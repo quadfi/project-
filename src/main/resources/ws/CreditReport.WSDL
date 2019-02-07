@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s1="http://www.transunion.ca/WS/TU4I" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="http://www.transunion.ca/WS/TU4R" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="https://tu.tuconline.com/TUOnlineServices/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="https://tu.tuconline.com/TUOnlineServices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://tu.tuconline.com/TUOnlineServices/">
+      <s:import namespace="http://www.transunion.ca/WS/TU4I" />
+      <s:import namespace="http://www.transunion.ca/WS/TU4R" />
+      <s:element name="ProcessRequestXMLV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:TUCANREL4" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:REL4Report" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcessRequestXMLV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProcessRequestXMLV2Result" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:REL4Report" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcessRequestXMLV3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:TUCANREL4" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:REL4Report" />
+            <s:element minOccurs="0" maxOccurs="1" name="sTU4R" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcessRequestXMLV3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ProcessRequestXMLV3Result" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:REL4Report" />
+            <s:element minOccurs="0" maxOccurs="1" name="sTU4R" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcessRequestXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:oTU4IInput" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ProcessRequestXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" ref="s2:ProcessRequestXMLResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.transunion.ca/WS/TU4I">
+      <s:element name="TUCANREL4" type="s1:TUCANREL4" />
+      <s:complexType name="TUCANREL4">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Route" type="s1:Route" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BureauMarket" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Product" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AddOn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndUser" type="s1:EndUser" />
+          <s:element minOccurs="0" maxOccurs="1" name="Language" type="s1:LanguageType" />
+          <s:element minOccurs="0" maxOccurs="1" name="TTY" type="s1:TTY" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Subject" type="s1:Subject" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalRequest" type="s1:OptionalRequest" />
+          <s:element minOccurs="0" maxOccurs="1" name="app_specific" type="s1:ArrayOfCustomData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Route">
+        <s:attribute default="Canada" name="RouteDest" type="s1:RouteRouteDest" />
+        <s:attribute default="Production" name="RouteType" type="s1:RouteRouteType" />
+      </s:complexType>
+      <s:simpleType name="RouteRouteDest">
+        <s:restriction base="s:string">
+          <s:enumeration value="Canada" />
+          <s:enumeration value="US" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="RouteRouteType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Production" />
+          <s:enumeration value="Test" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="EndUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PermissiblePurpose" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="LanguageType">
+        <s:restriction base="s:string">
+          <s:enumeration value="English" />
+          <s:enumeration value="French" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="TTY">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FFR" type="s:string" />
+        </s:sequence>
+        <s:attribute name="Language" type="s1:LanguageType" />
+      </s:complexType>
+      <s:complexType name="Subject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Name" type="s1:Name" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SIN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DOB" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Address" type="s1:Address" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CreditCard" type="s1:CreditCard" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Employment" type="s1:Employment" />
+          <s:element minOccurs="0" maxOccurs="1" name="subj_specific" type="s1:ArrayOfCustomData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Name">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suffix" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Address">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Civic" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Street" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Apt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Postal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prov" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+        </s:sequence>
+        <s:attribute default="Yes" name="Parsed" type="s1:AddressParsed" />
+      </s:complexType>
+      <s:simpleType name="AddressParsed">
+        <s:restriction base="s:string">
+          <s:enumeration value="Yes" />
+          <s:enumeration value="No" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CreditCard">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Card" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Employment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Employer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Occupation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prov" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Hired" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Income" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MLength" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomData" type="s1:CustomData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomData">
+        <s:attribute name="name" type="s:string" />
+        <s:attribute name="value" type="s:string" />
+      </s:complexType>
+      <s:complexType name="OptionalRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OwningBureau" type="s1:OwningBureauFormat" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorText" type="s1:ErrorTextFormat" />
+          <s:element minOccurs="0" maxOccurs="1" name="TradeMop" type="s1:TradeMopFormat" />
+          <s:element minOccurs="0" maxOccurs="1" name="Summary" type="s1:SummaryFormat" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="OwningBureauFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="Y" />
+          <s:enumeration value="N" />
+          <s:enumeration value="W" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ErrorTextFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="Y" />
+          <s:enumeration value="B" />
+          <s:enumeration value="T" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="TradeMopFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="Y" />
+          <s:enumeration value="N" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="SummaryFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="Y" />
+          <s:enumeration value="N" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="oTU4IInput" type="s1:TUCANREL4" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.transunion.ca/WS/TU4R">
+      <s:element name="REL4Report" type="s2:REL4Report" />
+      <s:complexType name="REL4Report">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Time" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Product" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TU_FFR_Report" type="s2:TU_FFR_Report" />
+          <s:element minOccurs="0" maxOccurs="1" name="app_specific" type="s2:ArrayOfCustomData" />
+          <s:element minOccurs="0" maxOccurs="1" name="Errors" type="s2:ArrayOfError" />
+          <s:element minOccurs="0" maxOccurs="1" name="UNKNOWN" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TU_FFR_Report">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Hit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OnFileDate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Names" type="s2:ArrayOfName" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalInformation" type="s2:PersonalInformation" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransAlerts" type="s2:ArrayOfTransAlert" />
+          <s:element minOccurs="0" maxOccurs="1" name="Addresses" type="s2:ArrayOfAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephones" type="s2:Telephones" />
+          <s:element minOccurs="0" maxOccurs="1" name="Employments" type="s2:ArrayOfEmployment" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegisteredItems" type="s2:ArrayOfRegisteredItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bankings" type="s2:ArrayOfBanking" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bankruptcies" type="s2:ArrayOfBankruptcy" />
+          <s:element minOccurs="0" maxOccurs="1" name="Legals" type="s2:ArrayOfLegal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Collections" type="s2:ArrayOfCollection" />
+          <s:element minOccurs="0" maxOccurs="1" name="Trades" type="s2:ArrayOfTrade" />
+          <s:element minOccurs="0" maxOccurs="1" name="Inquiries" type="s2:ArrayOfInquiry" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConsumerStatements" type="s2:ArrayOfConsumerStatement" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiscellaneousStatements" type="s2:ArrayOfMiscellaneousStatement" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditSummary" type="s2:CreditSummary" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditSummary2" type="s2:CreditSummary2" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditSummaryDetails" type="s2:ArrayOfCreditSummaryDetail" />
+          <s:element minOccurs="0" maxOccurs="1" name="Messages" type="s2:ArrayOfMessage" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScoreProducts" type="s2:ArrayOfScoreProduct" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountNetCharacteristics" type="s2:ArrayOfAccountNetCharacteristic" />
+          <s:element minOccurs="0" maxOccurs="1" name="TU_TTY_Report" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="subj_specific" type="s2:ArrayOfCustomData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfName">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Name" type="s2:Name" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Name">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suffix" type="s:string" />
+        </s:sequence>
+        <s:attribute name="NameType" type="s2:NameNameType" />
+      </s:complexType>
+      <s:simpleType name="NameNameType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Primary" />
+          <s:enumeration value="Alias" />
+          <s:enumeration value="Spouse" />
+          <s:enumeration value="Other" />
+          <s:enumeration value="Sujet" />
+          <s:enumeration value="Conjoint" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="PersonalInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SIN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DOB" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransAlert">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TransAlert" type="s2:TransAlert" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransAlert">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAddress">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Address" type="s2:Address" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Address">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Civic" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Street" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prov" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Postal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateReported" type="s:int" />
+        </s:sequence>
+        <s:attribute name="AddrType" type="s2:AddressAddrType" />
+      </s:complexType>
+      <s:simpleType name="AddressAddrType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Personal" />
+          <s:enumeration value="Employment" />
+          <s:enumeration value="Other" />
+          <s:enumeration value="Personnel" />
+          <s:enumeration value="Emploi" />
+          <s:enumeration value="Autre" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Telephones">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s2:Telephone" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Telephone">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+        </s:sequence>
+        <s:attribute name="PhoneType" type="s2:TelephonePhoneType" />
+      </s:complexType>
+      <s:simpleType name="TelephonePhoneType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Personal" />
+          <s:enumeration value="Employment" />
+          <s:enumeration value="Other" />
+          <s:enumeration value="Personnel" />
+          <s:enumeration value="Emploi" />
+          <s:enumeration value="Autre" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfEmployment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Employment" nillable="true" type="s2:Employment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Employment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EmpName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Occupation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateHired" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateSeparated" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateVerified" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Income" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PayBasis" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRegisteredItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RegisteredItem" type="s2:RegisteredItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RegisteredItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DateRevised" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateFiled" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateMatures" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OriginalBalance" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentBalance" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Narrative1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Narrative2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Security" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBanking">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Banking" type="s2:Banking" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Banking">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AccountNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateOpened" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateVerified" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateClosed" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IndustryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubscriberCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubscriberName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeAccount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccountDesignator" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Balance" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Narrative" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBankruptcy">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Bankruptcy" type="s2:Bankruptcy" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Bankruptcy">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DateRevised" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Division" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FilingNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateReported" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateDischarged" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Assets" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Liabilities" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="DischargeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Narrative" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrusteeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrusteeCompany" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThirdParty" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLegal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Legal" type="s2:Legal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Legal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DateRevised" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CaseNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateReported" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateSatisfied" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="OriginalAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentBalance" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Narrative1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Narrative2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Plaintiff" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lawyer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThirdParty" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCollection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Collection" type="s2:Collection" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Collection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Creditor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateReported" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateVerified" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DatePaidOut" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Narrative" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentBalance" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OriginalAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTrade">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Trade" type="s2:Trade" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Trade">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Joint" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateOpened" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateRevised" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateLastActivity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MOP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Balance" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="HighCredit" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditLimit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Frequency" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Payment" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Narrative1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Narrative2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PastDue" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentPatternStartDate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentPattern" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MonthsReviewed" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Plus30" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Plus60" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Plus90" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInquiry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Inquiry" type="s2:Inquiry" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Inquiry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfConsumerStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ConsumerStatement" type="s2:ConsumerStatement" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ConsumerStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMiscellaneousStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MiscellaneousStatement" type="s2:MiscellaneousStatement" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MiscellaneousStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreditSummary">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReportingPeriod" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfPublicRecords" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfCollections" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfNegativeTrades" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfNegativeTradesHistorical" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfHistoricalNegative" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfTrades" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfRevolvingTrades" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfInstallmentTrades" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfMortgageTrades" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfOpenTrades" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfInquiries" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreditSummary2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BankruptcyCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankruptcyDate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LegalItemCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LegalItemDate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CollectionCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CollectionDate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankingClosedForCauseCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankingClosedForCauseDate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegisteredItemsCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegisteredItemsDate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="InquiriesCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="InquiriesDate" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CollectionInquiriesCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="InquiriesWithin6Months" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TradeFirstOpened" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TradeLastOpened" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentNegativeTrades" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaidTrades" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCreditSummaryDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CreditSummaryDetail" type="s2:CreditSummaryDetail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreditSummaryDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HighCredit" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditLimit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Balance" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PastDue" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="MonthlyPayment" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="PercentageAvailable" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Message" type="s2:Message" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Message">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfScoreProduct">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ScoreProduct" type="s2:ScoreProduct" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ScoreProduct">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Product" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Score" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScoreDerogatoryAlert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScoreIndicatorFlag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Factor1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Factor2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Factor3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Factor4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ScoreCard" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAccountNetCharacteristic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AccountNetCharacteristic" type="s2:AccountNetCharacteristic" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AccountNetCharacteristic">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomData" type="s2:CustomData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomData">
+        <s:attribute name="name" type="s:string" />
+        <s:attribute name="value" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfError">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Error" type="s2:Error" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Error">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ProcessRequestXMLResult" type="s2:REL4Report" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ProcessRequestXMLV2SoapIn">
+    <wsdl:part name="parameters" element="tns:ProcessRequestXMLV2" />
+  </wsdl:message>
+  <wsdl:message name="ProcessRequestXMLV2SoapOut">
+    <wsdl:part name="parameters" element="tns:ProcessRequestXMLV2Response" />
+  </wsdl:message>
+  <wsdl:message name="ProcessRequestXMLV3SoapIn">
+    <wsdl:part name="parameters" element="tns:ProcessRequestXMLV3" />
+  </wsdl:message>
+  <wsdl:message name="ProcessRequestXMLV3SoapOut">
+    <wsdl:part name="parameters" element="tns:ProcessRequestXMLV3Response" />
+  </wsdl:message>
+  <wsdl:message name="ProcessRequestXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:ProcessRequestXML" />
+  </wsdl:message>
+  <wsdl:message name="ProcessRequestXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:ProcessRequestXMLResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CreditReportSoap">
+    <wsdl:operation name="ProcessRequestXMLV2">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Input XML request must comply with TU schema TUCANLREL4_Input.xsd</documentation>
+      <wsdl:input message="tns:ProcessRequestXMLV2SoapIn" />
+      <wsdl:output message="tns:ProcessRequestXMLV2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRequestXMLV3">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Input XML request must comply with TU schema TUCANLREL4_Input.xsd, Parsed XML response and raw TU4R are returned</documentation>
+      <wsdl:input message="tns:ProcessRequestXMLV3SoapIn" />
+      <wsdl:output message="tns:ProcessRequestXMLV3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRequestXML">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Input XML request must comply with TU schema TUCANLREL4_Input.xsd</documentation>
+      <wsdl:input message="tns:ProcessRequestXMLSoapIn" />
+      <wsdl:output message="tns:ProcessRequestXMLSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CreditReportSoap" type="tns:CreditReportSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="ProcessRequestXMLV2">
+      <soap:operation soapAction="https://tu.tuconline.com/TUOnlineServices/ProcessRequestXMLV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRequestXMLV3">
+      <soap:operation soapAction="https://tu.tuconline.com/TUOnlineServices/ProcessRequestXMLV3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessRequestXML">
+      <soap:operation soapAction="https://tu.tuconline.com/TUOnlineServices/ProcessRequestXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CreditReport">
+    <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">TU Credit Report XML Requests WebService.</documentation>
+    <wsdl:port name="CreditReportSoap" binding="tns:CreditReportSoap">
+      <soap:address location="http://10.143.106.141/tuonlineservices/creditreport.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
